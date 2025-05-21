@@ -1,11 +1,12 @@
 version: '3.8'
 
 services:
+  # Servicio web existente (Laravel)
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: product4_proyecto_web
+    container_name: lara_proyecto_web
     ports:
       - "8085:80"
     volumes:
@@ -18,26 +19,31 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html/public
 
+  # Servicio de WordPress
   wordpress:
-    image: wordpress:php8.1-apache
-    container_name: product4_proyecto_wordpress
+    image: wordpress:latest
+    container_name: wordpress
     depends_on:
       - db
     ports:
-      - "8086:80"
+      - "8000:80"
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./wordpress/wp-content/plugins:/var/www/html/wp-content/plugins
+      - ./wordpress/wp-content/themes:/var/www/html/wp-content/themes
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: user_password
-      WORDPRESS_DB_NAME: viajes
-    volumes:
-      - ./wordpress_data:/var/www/html
+      WORDPRESS_DB_NAME: wordpress
     networks:
       - backend
+    restart: unless-stopped
 
+  # Base de datos MySQL
   db:
     image: mysql:8.0
-    container_name: product4_proyecto_mysql
+    container_name: lara_proyecto_mysql
     ports:
       - "3309:3306"
     environment:
@@ -45,19 +51,28 @@ services:
       MYSQL_DATABASE: viajes
       MYSQL_USER: user
       MYSQL_PASSWORD: user_password
+      MYSQL_MULTIPLE_DATABASES: 'wordpress,viajes'
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    command: [
+      '--default-authentication-plugin=mysql_native_password',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+      '--max_allowed_packet=256M'
+    ]
     networks:
       - backend
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-puser_password" ]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  # phpMyAdmin
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.2.1
-    container_name: product4_proyecto_phpmyadmin
+    container_name: lara_proyecto_phpmyadmin
     depends_on:
       - db
     ports:
