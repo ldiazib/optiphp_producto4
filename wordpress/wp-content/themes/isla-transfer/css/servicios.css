@@ -1,0 +1,115 @@
+/* Estilos para la página de servicios */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.servicio-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eaeaea;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.servicio-card.destacado {
+    border: 2px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.servicio-card.destacado::after {
+    content: 'MÁS POPULAR';
+    position: absolute;
+    top: 10px;
+    right: -30px;
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 30px;
+    transform: rotate(45deg);
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.servicio-icono {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.servicio-card h3 {
+    color: var(--text-color);
+    margin: 1rem 0;
+    font-size: 1.4rem;
+}
+
+.servicio-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.servicio-caracteristicas {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+}
+
+.servicio-caracteristicas li {
+    padding: 0.5rem 0;
+    color: #555;
+}
+
+.servicio-caracteristicas i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.servicios-extra {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.servicio-extra {
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.servicio-extra i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.servicio-extra h4 {
+    color: var(--text-color);
+    margin: 1rem 0;
+}
+
+.servicio-extra p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .servicios-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .servicios-extra {
+        grid-template-columns: 1fr;
+    }
+}
