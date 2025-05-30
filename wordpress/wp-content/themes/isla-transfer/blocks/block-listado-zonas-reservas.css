@@ -1,0 +1,122 @@
+/*
+ * Estilos para el bloque personalizado "Listado Zonas Reservas".
+ * Este archivo debe estar en wp-content/themes/isla-transfer/blocks/
+ * y llamarse block-listado-zonas-reservas.css
+ */
+
+/* Contenedor principal del bloque */
+.listado-zonas-reservas {
+    background-color: #ffffff; /* Fondo blanco para las tarjetas */
+    border: 1px solid #e0e0e0; /* Borde suave */
+    padding: 30px; /* Más padding interno */
+    margin: 40px auto; /* Centra el bloque horizontalmente con más margen vertical */
+    border-radius: 12px; /* Esquinas más redondeadas */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    font-family: "Inter", sans-serif; /* Usar la fuente Inter */
+    max-width: 900px; /* Limita el ancho máximo para una mejor legibilidad */
+    text-align: center; /* Centra el contenido general del bloque */
+    color: #333; /* Color de texto general */
+}
+
+/* Título del bloque */
+.listado-zonas-reservas h2 {
+    color: #1a237e; /* Un azul más oscuro para el título */
+    font-size: 2.2em; /* Tamaño de fuente más grande */
+    margin-top: 0;
+    margin-bottom: 30px; /* Más espacio debajo del título */
+    font-weight: 700; /* Negrita */
+}
+
+/* Lista de zonas (contenedor de las tarjetas de zona) */
+.listado-zonas-reservas ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Usa flexbox para las tarjetas */
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en pantallas pequeñas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    gap: 25px; /* Espacio entre las tarjetas */
+}
+
+/* Cada tarjeta de zona */
+.listado-zonas-reservas li {
+    background-color: #f8faff; /* Fondo azul muy claro para cada tarjeta */
+    border: 1px solid #d0e0f0; /* Borde más distintivo */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Sombra para cada tarjeta */
+    flex: 1 1 calc(50% - 25px); /* Dos columnas en pantallas grandes, con espacio */
+    max-width: calc(50% - 25px); /* Asegura dos columnas */
+    margin-bottom: 0; /* Elimina el margen inferior de la lista original */
+    padding-bottom: 25px; /* Ajusta el padding inferior */
+    border-bottom: none; /* Elimina el borde inferior de la lista original */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave al pasar el ratón */
+    text-align: left; /* Alinea el texto de la tarjeta a la izquierda */
+}
+
+.listado-zonas-reservas li:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el ratón */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Sombra más grande al pasar el ratón */
+}
+
+/* Estilos para el texto dentro de cada tarjeta */
+.listado-zonas-reservas li strong {
+    color: #4a148c; /* Un color morado para las etiquetas */
+    display: block; /* Cada etiqueta en su propia línea */
+    margin-bottom: 5px; /* Espacio debajo de la etiqueta */
+    font-size: 1.1em; /* Tamaño de fuente ligeramente más grande */
+}
+
+/* Oculta los saltos de línea si quieres un formato más compacto */
+.listado-zonas-reservas li br {
+    display: none;
+}
+
+.listado-zonas-reservas li span {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .listado-zonas-reservas {
+        padding: 20px;
+        margin: 30px auto;
+        max-width: 95%; /* Ocupa más ancho en tabletas */
+    }
+    .listado-zonas-reservas h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    .listado-zonas-reservas ul {
+        flex-direction: column; /* Una columna en tabletas */
+        gap: 20px;
+    }
+    .listado-zonas-reservas li {
+        flex: 1 1 100%; /* Ocupa todo el ancho disponible */
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .listado-zonas-reservas {
+        padding: 15px;
+        margin: 20px auto;
+        border-radius: 8px;
+    }
+    .listado-zonas-reservas h2 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+    .listado-zonas-reservas li {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .listado-zonas-reservas li strong {
+        font-size: 1em;
+    }
+    .listado-zonas-reservas li span {
+        font-size: 0.9em;
+    }
+}
